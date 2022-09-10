@@ -39,5 +39,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findAllByDepartment(department);
     }
 
+    @Override
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    @Override
+    public Employee update(int employeeId, Employee employee) {
+        Employee storedEmployee = get(employeeId);
+        storedEmployee.setEmployeeId(employee.getEmployeeId());
+        storedEmployee.setDepartment(employee.getDepartment());
+        storedEmployee.setName(employee.getName());
+        storedEmployee.setStatus(employee.getStatus());
+        return employeeRepository.save(employee);
+    }
+
 
 }

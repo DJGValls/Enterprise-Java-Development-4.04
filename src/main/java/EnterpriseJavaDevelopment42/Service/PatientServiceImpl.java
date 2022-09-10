@@ -46,5 +46,19 @@ public class PatientServiceImpl implements PatientService{
         return patientRepository.findByAdmittedByStatus(Status.OFF);
     }
 
+    @Override
+    public Patient save(Patient patient) {
+        return patientRepository.save(patient);
+    }
+
+    @Override
+    public Patient update(int patientId, Patient patient) {
+        Patient storedPatient = get(patientId);
+        storedPatient.setName(patient.getName());
+        storedPatient.setDateOfBirth(patient.getDateOfBirth());
+        storedPatient.setAdmittedBy(patient.getAdmittedBy());
+        return patientRepository.save(patient);
+    }
+
 
 }

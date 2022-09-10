@@ -6,10 +6,7 @@ import EnterpriseJavaDevelopment42.Model.Status;
 import EnterpriseJavaDevelopment42.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -48,6 +45,18 @@ public class PatientController {
     public List<Patient> patientsListByDoctorOff(){
         return patientService.patientsListByDoctorOff(Status.OFF);
     }
+
+    @PostMapping("/newPatient")
+    public Patient create(@RequestBody Patient patient){
+        return patientService.save(patient);
+    }
+
+    @PutMapping("/updatePatient/{patientsId}")
+    public Patient update(@PathVariable int patientId, @RequestBody Patient patient){
+        return patientService.update(patientId, patient);
+    }
+
+
 
 
 
